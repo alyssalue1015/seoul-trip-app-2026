@@ -3,8 +3,8 @@
   "short_name": "首爾家族制霸",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f6faf7",
-  "theme_color": "#0f766e",
+  "background_color": "#f3f8ff",
+  "theme_color": "#2563eb",
   "lang": "zh-Hant",
   "icons": [
     {
