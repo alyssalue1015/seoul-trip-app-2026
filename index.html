@@ -4,27 +4,158 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0f766e" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>私人旅行工具</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="首爾家族制霸" />
+    <title>2026 首爾家族制霸之旅</title>
     <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="stylesheet" href="styles.css?v=privacy-1" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body>
-    <main class="privacy-page" aria-labelledby="pageTitle">
-      <section class="privacy-panel">
-        <p class="eyebrow">Privacy Protected</p>
-        <h1 id="pageTitle">私人旅行內容已保護</h1>
-        <p>
-          這個公開網址不放置私人行程、住宿、預算、聯絡資料或個人筆記。
-          完整版本保留在個人雲端同步資料夾中，避免被搜尋或轉傳後外流。
-        </p>
-        <div class="privacy-list" aria-label="公開版處理原則">
-          <span>公開頁僅保留安全說明</span>
-          <span>私人資料不放上 GitHub Pages</span>
-          <span>需要使用完整 app 時改用私密檔案</span>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">2026/07/22 - 07/28</p>
+          <h1>首爾家族制霸之旅</h1>
+          <p class="hero-copy">7 天 6 夜行程、記帳、韓語小抄與 Naver 導航，一支手機就能帶著走。</p>
         </div>
-      </section>
-    </main>
-    <script src="app.js?v=privacy-1"></script>
+        <div class="trip-card">
+          <span>住宿</span>
+          <strong>Hotel Midcity Myeongdong</strong>
+          <a id="hotelNav" class="nav-link" target="_blank" rel="noopener">Naver 導航</a>
+        </div>
+      </header>
+
+      <nav class="tabbar" aria-label="主要功能">
+        <button class="tab active" data-view="itinerary">行程</button>
+        <button class="tab" data-view="daughter">女兒預算</button>
+        <button class="tab" data-view="family">全家記帳</button>
+        <button class="tab" data-view="phrases">小抄</button>
+        <button class="tab" data-view="prep">提醒</button>
+      </nav>
+
+      <main>
+        <section id="itinerary" class="view active">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Daily Plan</p>
+              <h2>每日行程</h2>
+            </div>
+            <select id="daySelect" aria-label="選擇日期"></select>
+          </div>
+          <div id="daySummary" class="summary-grid"></div>
+          <div id="scheduleList" class="timeline"></div>
+        </section>
+
+        <section id="daughter" class="view">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">NT$10,000</p>
+              <h2>女兒購物預算</h2>
+            </div>
+            <button class="ghost" data-reset="daughter">清空</button>
+          </div>
+          <div class="budget-panel">
+            <div class="meter-card">
+              <span>已花</span>
+              <strong id="daughterSpent">NT$0</strong>
+              <div class="meter"><span id="daughterMeter"></span></div>
+              <small id="daughterLeft">剩餘 NT$10,000</small>
+            </div>
+            <form id="daughterForm" class="entry-form">
+              <label>品項<input name="item" placeholder="Olive Young、衣服、專輯..." required /></label>
+              <label>分類
+                <select name="category">
+                  <option>化妝品</option>
+                  <option>衣服</option>
+                  <option>偶像產品</option>
+                  <option>飾品</option>
+                  <option>其他</option>
+                </select>
+              </label>
+              <label>金額<input name="amount" type="number" min="0" inputmode="decimal" placeholder="例如 35000" required /></label>
+              <label>幣別
+                <select name="currency">
+                  <option value="KRW">韓元 KRW</option>
+                  <option value="TWD">台幣 TWD</option>
+                </select>
+              </label>
+              <button type="submit">新增購物紀錄</button>
+            </form>
+          </div>
+          <div id="daughterList" class="expense-list"></div>
+        </section>
+
+        <section id="family" class="view">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Food Fun Transport</p>
+              <h2>全家吃喝玩樂記帳</h2>
+            </div>
+            <button class="ghost" data-reset="family">清空</button>
+          </div>
+          <div class="rate-row">
+            <label>韓元換台幣估算<input id="rateInput" type="number" min="0.0001" step="0.0001" /></label>
+            <span>例：₩10,000 約 NT$<b id="ratePreview">230</b></span>
+          </div>
+          <form id="familyForm" class="entry-form wide">
+            <label>項目<input name="item" placeholder="晚餐、咖啡、計程車、門票..." required /></label>
+            <label>日期<select name="day" id="familyDay"></select></label>
+            <label>分類
+              <select name="category">
+                <option>餐飲</option>
+                <option>交通</option>
+                <option>門票體驗</option>
+                <option>伴手禮</option>
+                <option>其他</option>
+              </select>
+            </label>
+            <label>金額<input name="amount" type="number" min="0" inputmode="decimal" required /></label>
+            <label>幣別
+              <select name="currency">
+                <option value="KRW">韓元 KRW</option>
+                <option value="TWD">台幣 TWD</option>
+              </select>
+            </label>
+            <button type="submit">新增全家支出</button>
+          </form>
+          <div class="total-strip">
+            <span>全家總支出</span>
+            <strong id="familyTotal">NT$0</strong>
+          </div>
+          <div id="familyList" class="expense-list"></div>
+        </section>
+
+        <section id="phrases" class="view">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Korean Cheat Sheet</p>
+              <h2>每日韓語小抄</h2>
+            </div>
+            <select id="phraseDaySelect" aria-label="選擇小抄日期"></select>
+          </div>
+          <div id="phraseList" class="phrase-list"></div>
+        </section>
+
+        <section id="prep" class="view">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Before You Go</p>
+              <h2>行前與避雷提醒</h2>
+            </div>
+          </div>
+          <div id="prepList" class="info-grid"></div>
+          <div class="food-block">
+            <h3>區域安全口袋名單</h3>
+            <div id="foodList" class="food-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="emptyState">
+      <div class="empty">還沒有紀錄。買完、吃完、搭完車，就來這裡補一筆。</div>
+    </template>
+
+    <script src="app.js?v=5"></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
-const CACHE_NAME = "private-travel-tool-v1";
+const CACHE_NAME = "seoul-trip-app-v5";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=privacy-1",
-  "./app.js?v=privacy-1",
+  "./styles.css?v=5",
+  "./app.js?v=5",
   "./manifest.webmanifest",
   "./icon.svg"
 ];
