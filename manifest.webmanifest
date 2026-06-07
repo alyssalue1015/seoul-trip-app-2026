@@ -1,0 +1,17 @@
+{
+  "name": "私人旅行工具",
+  "short_name": "旅行工具",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6faf7",
+  "theme_color": "#0f766e",
+  "lang": "zh-Hant",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
